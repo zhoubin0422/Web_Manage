@@ -39,6 +39,7 @@ pip install pyyaml
 * conf： 目录为配置文件所在目录
 * logs： 为程序运行时产生的日志文件存放目录
 * modules： 存放功能模块的目录
+* manage.py：项目程序入口文件
 
 ## 项目已经实现的功能
 * 备份网站数据
