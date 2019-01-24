@@ -57,9 +57,9 @@ class BaseClass(object):
             os.makedirs(path)
             return True
 
-    def loging(self):
-        """ 日志处理函数 """
-        return self.logger
+    # def loging(self):
+    #     """ 日志处理函数 """
+    #     return self.logger
 
 
 class BackupWeb(BaseClass):
