@@ -1,0 +1,11 @@
+[MySQL]
+host = xxx.xxx.xxx.xxx # 数据库服务器的IP地址
+user = 'root'          # 用于备份数据库的用户
+password = '123456'    # 数据库密码
+port = 3306            # 数据库端口
+mysql_binlog_dir = /data/mysql/       # 二进制日志存放的目录
+mysql_backup_dir = /backup/MySQL_Backup_Dir/          # 数据库备份文件存放目录
+
+[Web]
+Web_Data_Dir = /data/wwwroot/www.59izt.com/           # 网站根目录
+Web_Backup_Dir = /backup/Web_Backup_Dir/              # 网站备份文件存放目录
