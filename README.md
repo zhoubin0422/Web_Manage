@@ -1,13 +1,22 @@
 # 项目说明
 ## 环境需求
 Python 版本：Python 3.6.x
+Linux系统版本：CentOS / Redhat
 
 ## 需要用到的第三方模块:
-### pyyaml
-* 安装方式：
+* pyyaml
+
+## 项目安装
+* 下载项目
+```bash
+git clone https://github.com/zhoubin0422/Web_Manage.git
+```
+
+* 安装第三方模块 pyyaml
 ```bash
 pip install pyyaml
 ```
+
 
 ## 目录结构如下
 ```bash
