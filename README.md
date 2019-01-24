@@ -18,7 +18,6 @@ pip install pyyaml
 │   ├── __pycache__
 │   │   ├── __init__.cpython-36.pyc
 │   │   └── start.cpython-36.pyc
-│   └── start.py
 ├── conf
 │   ├── base.example.cnf
 │   └── logging.conf.yaml
