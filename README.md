@@ -6,18 +6,6 @@
 ## 需要用到的第三方模块:
 * pyyaml
 
-## 项目安装
-* 下载项目
-```bash
-git clone https://github.com/zhoubin0422/Web_Manage.git
-```
-
-* 安装第三方模块 pyyaml
-```bash
-pip install pyyaml
-```
-
-
 ## 目录结构如下
 ```bash
 .
@@ -53,7 +41,27 @@ pip install pyyaml
 * 备份网站数据
 * 全量备份MySQL数据库（mysqldump）
 
-## 使用方式
+
+## 项目安装
+* 下载项目
+```bash
+git clone https://github.com/zhoubin0422/Web_Manage.git
+```
+
+* 创建配置文件 base.cnf
+```bash
+cd Web_Manage/conf
+cp base.ezample.cnf base.cnf
+
+# 修改其中对应的配置参数
+```
+
+* 安装第三方模块 pyyaml
+```bash
+pip install pyyaml
+```
+
+## 项目使用
 * 备份网站数据
 ```bash
 cd Web_Manage
