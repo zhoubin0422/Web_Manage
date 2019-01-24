@@ -51,7 +51,7 @@ git clone https://github.com/zhoubin0422/Web_Manage.git
 * 创建配置文件 base.cnf
 ```bash
 cd Web_Manage/conf
-cp base.ezample.cnf base.cnf
+cp base.example.cnf base.cnf
 
 # 修改其中对应的配置参数
 ```
