@@ -1,7 +1,7 @@
 # 项目说明
 ## 环境需求
-Python 版本：Python 3.6.x
-Linux系统版本：CentOS / Redhat
+* Python 版本：Python 3.6.x
+* 系统：CentOS / Redhat
 
 ## 需要用到的第三方模块:
 * pyyaml
