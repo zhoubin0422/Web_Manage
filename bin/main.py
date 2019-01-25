@@ -28,11 +28,12 @@ def main():
         obj.backup_web()
     elif sys.argv[1] == 'backupdb':
         obj = backup.BackupDB()
-        if sys.argv[1] == 'backupdb' and sys.argv[2]:
-            obj.full_backup(sys.argv[2])
-        elif sys.argv[1] == 'backupdb' and sys.argv[2] == '':
-            obj.full_backup('')
-        elif sys.argv[1] == 'backupdb' and sys.argv[2] == '2':
+        if sys.argv[2]:
+            if sys.argv[2] == 'all':
+                obj.full_backup(db_name='')
+            else:
+                obj.full_backup(sys.argv[2])
+        else:
             obj.increment_backup()
     else:
         print(msg)

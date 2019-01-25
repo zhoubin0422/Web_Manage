@@ -14,6 +14,7 @@ import logging
 import logging.config
 import yaml
 import time
+import fnmatch
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -32,6 +33,7 @@ class BaseClass(object):
         self.web_data_dir = parser.get('Web', 'Web_Data_Dir')
         self.web_backup_dir = parser.get('Web', 'Web_Backup_Dir')
         self.mysql_backup_dir = parser.get('MySQL', 'mysql_backup_dir')
+        self.mysql_detail_backup_dir = parser.get('MySQL', 'mysql_detail_backup_dir')
         self.mysql_binlog_dir = parser.get('MySQL', 'mysql_binlog_dir')
         self.mysql_user = parser.get('MySQL', 'user')
         self.mysql_password = parser.get('MySQL', 'password')
@@ -56,6 +58,22 @@ class BaseClass(object):
         else:
             os.makedirs(path)
             return True
+
+    def is_specific_match(self, filename, patterns):
+        for pattern in patterns:
+            if fnmatch.fnmatch(filename, pattern):
+                return True
+            return False
+
+    def find_specific_files(self, root, patterns=['*'], exclude_dirs=[]):
+        for root, dirnames, files in os.walk(root):
+            for filename in files:
+                if self.is_specific_match(filename, patterns):
+                    yield os.path.join(root, filename)
+
+            for d in exclude_dirs:
+                if d in dirnames:
+                    dirnames.remove(d)
 
     # def loging(self):
     #     """ 日志处理函数 """
@@ -136,5 +154,32 @@ class BackupDB(BaseClass):
         """
         数据库增量备份方法
         """
-        pass
+        self.logger.info('正在刷新二进制日志')
+        cmd = 'mysqladmin -u{} -p{} flush-logs'.format(self.mysql_user, self.mysql_password)
+        s = subprocess.run(cmd, shell=True)
+        if s.returncode == 0:
+            self.logger.info('二进制日志刷新完成!')
+        else:
+            self.logger.info('刷新失败，请检查')
 
+        li = []
+        num = 0
+        patterns = ['mysql-bin.index']
+        if self.check_dir(self.mysql_detail_backup_dir):
+            for item in self.find_specific_files(self.mysql_binlog_dir, patterns=patterns):
+                with open(item) as f:
+                    for i in f.readlines():
+                        li.append(i.strip().strip('./'))
+                    for file in li:
+                        file_name = os.path.join(self.mysql_binlog_dir, file)
+                        num += 1
+                        if num == len(li):
+                            self.logger.info('{} 跳过备份！'.format(file_name))
+                        else:
+                            shutil.copy(file_name, self.mysql_detail_backup_dir)
+                            self.logger.info('{} 备份完成！'.format(file_name))
+
+
+if __name__ == '__main__':
+    obj = BackupDB()
+    obj.increment_backup()

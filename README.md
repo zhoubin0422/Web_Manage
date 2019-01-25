@@ -39,7 +39,8 @@
 
 ## 项目已经实现的功能
 * 备份网站数据
-* 全量备份MySQL数据库（mysqldump）
+* 全量备份MySQL数据库
+* 增量备份二进制日志
 
 
 ## 项目安装
@@ -52,9 +53,10 @@ git clone https://github.com/zhoubin0422/Web_Manage.git
 ```bash
 cd Web_Manage/conf
 cp base.example.cnf base.cnf
-
-# 修改其中对应的配置参数
 ```
+
+* 修改配置文件中对应的配置参数
+
 
 * 安装第三方模块 pyyaml
 ```bash
@@ -62,21 +64,27 @@ pip install pyyaml
 ```
 
 ## 项目使用
+首先进入项目根目录
+```bash
+cd /Web_Manage
+```
 * 备份网站数据
 ```bash
-cd Web_Manage
 python manage.py backupweb
 ```
 
 * 备份MySQL数据库中所有的库
 ```bash
-cd Web_Manage
-python manage.py backupdb
+python manage.py backupdb all
 
 ```
 
 * 备份MySQL数据库的指定的库
 ```bash
-cd Web_Manage
 python manage.py backupdb mysite  # mysite 为需要备份的数据库名字
+```
+
+* 增量备份二进制日志方法
+```bash
+python manage.py backupdb
 ```

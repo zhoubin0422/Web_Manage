@@ -5,6 +5,7 @@ password = '123456'    # 数据库密码
 port = 3306            # 数据库端口
 mysql_binlog_dir = /data/mysql/       # 二进制日志存放的目录
 mysql_backup_dir = /backup/MySQL_Backup_Dir/          # 数据库备份文件存放目录
+mysql_detail_backup_dir = /backup/MySQL_Backup_Dir/Detail/      # 数据库二进制日志文件备份存放目录
 
 [Web]
 Web_Data_Dir = /data/wwwroot/www.59izt.com/           # 网站根目录
